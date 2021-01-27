@@ -7,6 +7,7 @@ import HumbertoChitay.Analizador.paises;
 import HumbertoChitay.ServiciosSV.SV;
 import HumbertoChitay.ServiciosCR.CR;
 import HumbertoChitay.ServiciosGT.GT;
+import HumbertoChitay.ServiciosHN.HN;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -234,6 +235,34 @@ public class Ventana extends javax.swing.JFrame {
             modeloSV.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
             temp = salvador.get(SV.MEGAPROMO);
             modeloSV.addRow(new Object[]{"SUEÑOS DE NAVIDAD", temp.getConteo(), temp.getSuma()});
+            
+            /*HN = jTable3*/
+            DefaultTableModel modeloHN = (DefaultTableModel) jTable3.getModel();
+            HashMap<HN, Acumulador> honduras = cobrosPaises.get(paises.HN);
+            temp = honduras.get(HN.CLUBDORADO1);
+            modeloHN.addRow(new Object[]{"CLUB DORADO 1", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.CLUBDORADO2);
+            modeloHN.addRow(new Object[]{"CLUB DORADO 2", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.CLUBDORADO3);
+            modeloHN.addRow(new Object[]{"CLUB DORADO 3", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.YOMILLONARIO);
+            modeloHN.addRow(new Object[]{"YO MILLONARIO", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.CLUBDORADOPREMIUM);
+            modeloHN.addRow(new Object[]{"CLUB DORADO PREMIUM", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.GANAMANIA);
+            modeloHN.addRow(new Object[]{"GANAMANIA", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.GUIASALUD);
+            modeloHN.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.LAPROMO);
+            modeloHN.addRow(new Object[]{"RASPICLARO", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.MEGAPROMO);
+            modeloHN.addRow(new Object[]{"RUTA 14", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.ELCUPONAZO);
+            modeloHN.addRow(new Object[]{"EL CUPONAZO", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.MIDOCTOR);
+            modeloHN.addRow(new Object[]{"MIDOCTOR", temp.getConteo(), temp.getSuma()});
+            temp = honduras.get(HN.PROMOVERANO);
+            modeloHN.addRow(new Object[]{"PROMO VERANO", temp.getConteo(), temp.getSuma()});
             
             
             /*CR = jTable5*/
