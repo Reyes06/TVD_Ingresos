@@ -197,15 +197,15 @@ public class Ventana extends javax.swing.JFrame {
             HashMap<CR, Acumulador> costaRica = cobrosPaises.get(paises.CR);
             Acumulador temp;
             temp = costaRica.get(CR.CLUBDORADO);
-            modeloCR.addRow(new Object[]{"Club Dorado", temp.getConteo(), temp.getSuma()});
+            modeloCR.addRow(new Object[]{"CLUB DORADO", temp.getConteo(), temp.getSuma()});
             temp = costaRica.get(CR.MIDOCTOR);
-            modeloCR.addRow(new Object[]{"Club Dorado Premium", temp.getConteo(), temp.getSuma()});
+            modeloCR.addRow(new Object[]{"CLUB DORADO PREMIUM", temp.getConteo(), temp.getSuma()});
             temp = costaRica.get(CR.SANTAREGALON);
-            modeloCR.addRow(new Object[]{"Promo Meganavidad", temp.getConteo(), temp.getSuma()});
+            modeloCR.addRow(new Object[]{"PROMO MEGANAVIDAD", temp.getConteo(), temp.getSuma()});
             temp = costaRica.get(CR.GRADUADOSVERANO);
-            modeloCR.addRow(new Object[]{"Graduados de Verano", temp.getConteo(), temp.getSuma()});
+            modeloCR.addRow(new Object[]{"GRADUADOS DE VERANO", temp.getConteo(), temp.getSuma()});
             temp = costaRica.get(CR.GUIASALUD);
-            modeloCR.addRow(new Object[]{"Claro Salud", temp.getConteo(), temp.getSuma()});
+            modeloCR.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
             
             
         }
