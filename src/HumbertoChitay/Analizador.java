@@ -5,18 +5,28 @@ import HumbertoChitay.ServiciosCR.CR;
 import Utils.ZipManager;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Eddy Reyes
  */
 public class Analizador {
-    public static void procesarCobros(File zipPath){
+    
+    public enum paises {
+        GT,
+        SV,
+        HN,
+        NI,
+        CR
+    }
+    
+    public static HashMap<paises, HashMap> procesarCobros(File zipPath){
         ZipManager.unZip(zipPath, "HumbertoChitay");
+        File humberto = new File("HumbertoChitay");
+        HashMap<paises, HashMap> cobrosPaises = new HashMap();
         
-        File f = new File("HumbertoChitay");
-        
-        for(File archivo : f.listFiles()){
+        for(File archivo : humberto.listFiles()){
             
             Servicios analisisCobros;
                     
@@ -31,34 +41,17 @@ public class Analizador {
                     break;
                 case "CR":
                     analisisCobros = new ServiciosCR();
-                    System.out.println(archivo.getAbsolutePath());
                     HashMap<CR, Acumulador> cobros = analisisCobros.procesarCobros(archivo);
-                    Acumulador temp;
-                    temp = cobros.get(CR.CLUBDORADO);
-                    System.out.println("Club dorado");
-                    System.out.println("Count: " + temp.getConteo());
-                    System.out.println("Suma: " + temp.getSuma());
-                    temp = cobros.get(CR.GRADUADOSVERANO);
-                    System.out.println("Graduados Verano");
-                    System.out.println("Count: " + temp.getConteo());
-                    System.out.println("Suma: " + temp.getSuma());
-                    temp = cobros.get(CR.GUIASALUD);
-                    System.out.println("Guia salud");
-                    System.out.println("Count: " + temp.getConteo());
-                    System.out.println("Suma: " + temp.getSuma());
-                    temp = cobros.get(CR.MIDOCTOR);
-                    System.out.println("Mi doctor");
-                    System.out.println("Count: " + temp.getConteo());
-                    System.out.println("Suma: " + temp.getSuma());
-                    temp = cobros.get(CR.SANTAREGALON);
-                    System.out.println("Santa regalon");
-                    System.out.println("Count: " + temp.getConteo());
-                    System.out.println("Suma: " + temp.getSuma());
+                    cobrosPaises.put(paises.CR, cobros);
+                    
+                    
                     
                     break;
             }
             
             
         }
+        
+        return cobrosPaises;
     }
 }

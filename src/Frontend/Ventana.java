@@ -1,8 +1,13 @@
 
 package Frontend;
 
+import HumbertoChitay.Acumulador;
 import HumbertoChitay.Analizador;
+import HumbertoChitay.Analizador.paises;
+import HumbertoChitay.ServiciosCR.CR;
+import java.util.HashMap;
 import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +21,10 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         jTable1.setCellSelectionEnabled(true);
+        jTable2.setCellSelectionEnabled(true);
+        jTable3.setCellSelectionEnabled(true);
+        jTable4.setCellSelectionEnabled(true);
+        jTable5.setCellSelectionEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,10 +48,7 @@ public class Ventana extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Conteo", "Suma"
@@ -60,14 +66,11 @@ public class Ventana extends javax.swing.JFrame {
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
-        jTabbedPane1.addTab("GT", jScrollPane1);
+        jTabbedPane1.addTab("Guatemala", jScrollPane1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Conteo", "Suma"
@@ -84,14 +87,11 @@ public class Ventana extends javax.swing.JFrame {
         jTable2.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(jTable2);
 
-        jTabbedPane1.addTab("SV", jScrollPane2);
+        jTabbedPane1.addTab("El Salvador", jScrollPane2);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Conteo", "Suma"
@@ -108,14 +108,11 @@ public class Ventana extends javax.swing.JFrame {
         jTable3.setRowSelectionAllowed(false);
         jScrollPane3.setViewportView(jTable3);
 
-        jTabbedPane1.addTab("HN", jScrollPane3);
+        jTabbedPane1.addTab("Honduras", jScrollPane3);
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Conteo", "Suma"
@@ -132,14 +129,11 @@ public class Ventana extends javax.swing.JFrame {
         jTable4.setRowSelectionAllowed(false);
         jScrollPane4.setViewportView(jTable4);
 
-        jTabbedPane1.addTab("NI", jScrollPane4);
+        jTabbedPane1.addTab("Nicaragua", jScrollPane4);
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Conteo", "Suma"
@@ -156,7 +150,7 @@ public class Ventana extends javax.swing.JFrame {
         jTable5.setRowSelectionAllowed(false);
         jScrollPane5.setViewportView(jTable5);
 
-        jTabbedPane1.addTab("CR", jScrollPane5);
+        jTabbedPane1.addTab("Costa Rica", jScrollPane5);
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,9 +188,26 @@ public class Ventana extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         int seleccion = fileChooser.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION)
-        {
-           Analizador.procesarCobros(fileChooser.getSelectedFile());
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            
+            HashMap<Analizador.paises, HashMap> cobrosPaises = Analizador.procesarCobros(fileChooser.getSelectedFile());
+
+            /*CR = jTable5*/
+            DefaultTableModel modeloCR = (DefaultTableModel) jTable5.getModel();
+            HashMap<CR, Acumulador> costaRica = cobrosPaises.get(paises.CR);
+            Acumulador temp;
+            temp = costaRica.get(CR.CLUBDORADO);
+            modeloCR.addRow(new Object[]{"Club Dorado", temp.getConteo(), temp.getSuma()});
+            temp = costaRica.get(CR.MIDOCTOR);
+            modeloCR.addRow(new Object[]{"Club Dorado Premium", temp.getConteo(), temp.getSuma()});
+            temp = costaRica.get(CR.SANTAREGALON);
+            modeloCR.addRow(new Object[]{"Promo Meganavidad", temp.getConteo(), temp.getSuma()});
+            temp = costaRica.get(CR.GRADUADOSVERANO);
+            modeloCR.addRow(new Object[]{"Graduados de Verano", temp.getConteo(), temp.getSuma()});
+            temp = costaRica.get(CR.GUIASALUD);
+            modeloCR.addRow(new Object[]{"Claro Salud", temp.getConteo(), temp.getSuma()});
+            
+            
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
