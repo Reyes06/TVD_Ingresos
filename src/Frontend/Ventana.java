@@ -5,6 +5,7 @@ import HumbertoChitay.Acumulador;
 import HumbertoChitay.Analizador;
 import HumbertoChitay.Analizador.paises;
 import HumbertoChitay.ServiciosCR.CR;
+import HumbertoChitay.ServiciosGT.GT;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -15,9 +16,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana
-     */
     public Ventana() {
         initComponents();
         jTable1.setCellSelectionEnabled(true);
@@ -191,11 +189,38 @@ public class Ventana extends javax.swing.JFrame {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             
             HashMap<Analizador.paises, HashMap> cobrosPaises = Analizador.procesarCobros(fileChooser.getSelectedFile());
-
+            
+            Acumulador temp;
+            
+            /*GT = jTable5*/
+            DefaultTableModel modeloGT = (DefaultTableModel) jTable1.getModel();
+            HashMap<GT, Acumulador> guatemala = cobrosPaises.get(paises.GT);
+            temp = guatemala.get(GT.CLUBDORADO1);
+            modeloGT.addRow(new Object[]{"CLUB DORADO 1", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.CLUBDORADO2);
+            modeloGT.addRow(new Object[]{"CLUB DORADO 2", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.CLUBDORADO3);
+            modeloGT.addRow(new Object[]{"CLUB DORADO 3", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.YOMILLONARIO);
+            modeloGT.addRow(new Object[]{"YO MILLONARIO", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.GANAMANIA);
+            modeloGT.addRow(new Object[]{"GANAMANIA", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.LAPROMO);
+            modeloGT.addRow(new Object[]{"PROMO 13X12", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.ELCUPONAZO);
+            modeloGT.addRow(new Object[]{"EL CUPONAZO", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.CLAROSALUD);
+            modeloGT.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.MEGAPROMO);
+            modeloGT.addRow(new Object[]{"RUTA 14", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.RECARGAYGANA);
+            modeloGT.addRow(new Object[]{"RECARGA Y GANA", temp.getConteo(), temp.getSuma()});
+            temp = guatemala.get(GT.MIDOCTOR);
+            modeloGT.addRow(new Object[]{"MI DOCTOR", temp.getConteo(), temp.getSuma()});
+            
             /*CR = jTable5*/
             DefaultTableModel modeloCR = (DefaultTableModel) jTable5.getModel();
             HashMap<CR, Acumulador> costaRica = cobrosPaises.get(paises.CR);
-            Acumulador temp;
             temp = costaRica.get(CR.CLUBDORADO);
             modeloCR.addRow(new Object[]{"CLUB DORADO", temp.getConteo(), temp.getSuma()});
             temp = costaRica.get(CR.MIDOCTOR);

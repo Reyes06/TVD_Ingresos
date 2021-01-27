@@ -25,13 +25,15 @@ public class Analizador {
         ZipManager.unZip(zipPath, "HumbertoChitay");
         File humberto = new File("HumbertoChitay");
         HashMap<paises, HashMap> cobrosPaises = new HashMap();
-        
-        for(File archivo : humberto.listFiles()){
-            
-            Servicios analisisCobros;
+        Servicios analisisCobros;
+        HashMap<CR, Acumulador> cobros;
                     
+        for(File archivo : humberto.listFiles()){
             switch(archivo.getName().split("_")[1]){
                 case "GT":
+                    analisisCobros = new ServiciosGT();
+                    cobros = analisisCobros.procesarCobros(archivo);
+                    cobrosPaises.put(paises.GT, cobros);
                     break;
                 case "SV":
                     break;
@@ -41,11 +43,8 @@ public class Analizador {
                     break;
                 case "CR":
                     analisisCobros = new ServiciosCR();
-                    HashMap<CR, Acumulador> cobros = analisisCobros.procesarCobros(archivo);
+                    cobros = analisisCobros.procesarCobros(archivo);
                     cobrosPaises.put(paises.CR, cobros);
-                    
-                    
-                    
                     break;
             }
             
