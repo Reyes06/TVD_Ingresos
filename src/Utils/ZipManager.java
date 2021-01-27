@@ -14,7 +14,7 @@ import java.util.zip.ZipInputStream;
  */
 public class ZipManager {
     
-    public static void unZip(String archivoZip, String rutaSalida) {
+    public static void unZip(File archivoZip, String rutaSalida) {
         byte[] buffer = new byte[1024];
         try {
             File folder = new File(rutaSalida);
@@ -38,7 +38,6 @@ public class ZipManager {
             }
             zis.closeEntry();
             zis.close();
-            System.out.println("Listo");
         } catch (IOException ex) {
             ex.printStackTrace();
         }

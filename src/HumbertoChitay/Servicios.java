@@ -1,5 +1,6 @@
 package HumbertoChitay;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -8,6 +9,6 @@ import java.util.HashMap;
  */
 public interface Servicios {
     
-    public abstract HashMap procesarCobros(String csvPath);
+    public abstract HashMap procesarCobros(File csvPath);
     
 }

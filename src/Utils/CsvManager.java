@@ -3,6 +3,7 @@ package Utils;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ import java.util.LinkedList;
  */
 public class CsvManager {
     
-    public static LinkedList<String[]> read(String csvPath){
+    public static LinkedList<String[]> read(File csvPath){
         CSVReader reader = null;
         LinkedList<String[]> tabla = new LinkedList();
         try {
@@ -27,6 +28,8 @@ public class CsvManager {
            reader.close();
         } catch (CsvValidationException | IOException e) {
             System.out.println("Hubo un error al interpretar el CCV");
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return tabla;
     }
