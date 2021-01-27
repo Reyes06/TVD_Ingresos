@@ -36,6 +36,9 @@ public class Analizador {
                     cobrosPaises.put(paises.GT, cobros);
                     break;
                 case "SV":
+                    analisisCobros = new ServiciosSV();
+                    cobros = analisisCobros.procesarCobros(archivo);
+                    cobrosPaises.put(paises.SV, cobros);
                     break;
                 case "HN":
                     break;

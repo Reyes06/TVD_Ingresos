@@ -4,6 +4,7 @@ package Frontend;
 import HumbertoChitay.Acumulador;
 import HumbertoChitay.Analizador;
 import HumbertoChitay.Analizador.paises;
+import HumbertoChitay.ServiciosSV.SV;
 import HumbertoChitay.ServiciosCR.CR;
 import HumbertoChitay.ServiciosGT.GT;
 import java.util.HashMap;
@@ -192,7 +193,7 @@ public class Ventana extends javax.swing.JFrame {
             
             Acumulador temp;
             
-            /*GT = jTable5*/
+            /*GT = jTable1*/
             DefaultTableModel modeloGT = (DefaultTableModel) jTable1.getModel();
             HashMap<GT, Acumulador> guatemala = cobrosPaises.get(paises.GT);
             temp = guatemala.get(GT.CLUBDORADO1);
@@ -217,6 +218,23 @@ public class Ventana extends javax.swing.JFrame {
             modeloGT.addRow(new Object[]{"RECARGA Y GANA", temp.getConteo(), temp.getSuma()});
             temp = guatemala.get(GT.MIDOCTOR);
             modeloGT.addRow(new Object[]{"MI DOCTOR", temp.getConteo(), temp.getSuma()});
+            
+            /*SV = jTable2*/
+            DefaultTableModel modeloSV = (DefaultTableModel) jTable2.getModel();
+            HashMap<SV, Acumulador> salvador = cobrosPaises.get(paises.SV);
+            temp = salvador.get(SV.CLUBDORADO);
+            modeloSV.addRow(new Object[]{"CLUB DORADO", temp.getConteo(), temp.getSuma()});
+            temp = salvador.get(SV.YOMILLONARIO);
+            modeloSV.addRow(new Object[]{"YO MILLONARIO", temp.getConteo(), temp.getSuma()});
+            temp = salvador.get(SV.MIDOCTOR);
+            modeloSV.addRow(new Object[]{"CLUB DORADO PREMIUM", temp.getConteo(), temp.getSuma()});
+            temp = salvador.get(SV.ELCUPONAZO);
+            modeloSV.addRow(new Object[]{"EL CUPONAZO", temp.getConteo(), temp.getSuma()});
+            temp = salvador.get(SV.GUIASALUD);
+            modeloSV.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
+            temp = salvador.get(SV.MEGAPROMO);
+            modeloSV.addRow(new Object[]{"SUEÑOS DE NAVIDAD", temp.getConteo(), temp.getSuma()});
+            
             
             /*CR = jTable5*/
             DefaultTableModel modeloCR = (DefaultTableModel) jTable5.getModel();

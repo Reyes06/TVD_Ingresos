@@ -29,7 +29,7 @@ public class ServiciosGT implements Servicios{
     
     @Override
     public HashMap procesarCobros(File csvPath) {
-         HashMap<GT, Acumulador> datos = new HashMap();
+        HashMap<GT, Acumulador> datos = new HashMap();
         datos.put(GT.CLUBDORADO1, new Acumulador());
         datos.put(GT.CLUBDORADO2, new Acumulador());
         datos.put(GT.CLUBDORADO3, new Acumulador());
