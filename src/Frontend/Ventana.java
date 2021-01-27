@@ -8,6 +8,7 @@ import HumbertoChitay.ServiciosSV.SV;
 import HumbertoChitay.ServiciosCR.CR;
 import HumbertoChitay.ServiciosGT.GT;
 import HumbertoChitay.ServiciosHN.HN;
+import HumbertoChitay.ServiciosNI.NI;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -264,6 +265,23 @@ public class Ventana extends javax.swing.JFrame {
             temp = honduras.get(HN.PROMOVERANO);
             modeloHN.addRow(new Object[]{"PROMO VERANO", temp.getConteo(), temp.getSuma()});
             
+            /*HN = jTable3*/
+            DefaultTableModel modeloNI = (DefaultTableModel) jTable4.getModel();
+            HashMap<NI, Acumulador> nicaragua = cobrosPaises.get(paises.NI);
+            temp = nicaragua.get(NI.CLUBDORADO1);
+            modeloNI.addRow(new Object[]{"CLUB DORADO 1", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.MIDOCTOR);
+            modeloNI.addRow(new Object[]{"CLUB DORADO 2", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.CLUBDORADO3);
+            modeloNI.addRow(new Object[]{"CLUB DORADO 3", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.CLUBDORADOPREMIUM);
+            modeloNI.addRow(new Object[]{"CLUB DORADO PREMIUM", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.YOMILLONARIO);
+            modeloNI.addRow(new Object[]{"YO MILLONARIO", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.CLUBDORADO4);
+            modeloNI.addRow(new Object[]{"CLUB DORADO 4", temp.getConteo(), temp.getSuma()});
+            temp = nicaragua.get(NI.GUIASALUD);
+            modeloNI.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
             
             /*CR = jTable5*/
             DefaultTableModel modeloCR = (DefaultTableModel) jTable5.getModel();

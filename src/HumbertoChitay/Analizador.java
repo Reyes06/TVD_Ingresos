@@ -20,11 +20,22 @@ public class Analizador {
         CR
     }
     
+    private static void eliminarArchivos(File directorio){
+        for(File archivo : directorio.listFiles()){
+            if(archivo.isDirectory()){
+                eliminarArchivos(archivo);
+            }
+            archivo.delete();
+        }
+    }
+    
     public static HashMap<paises, HashMap> procesarCobros(File zipPath){
         
         File humberto = new File("HumbertoChitay");
-        for(File archivo : humberto.listFiles()){
-            archivo.delete();
+        if (!humberto.exists()) {
+            humberto.mkdir();
+        } else {
+            eliminarArchivos(humberto);
         }
         
         ZipManager.unZip(zipPath, "HumbertoChitay");
@@ -51,6 +62,9 @@ public class Analizador {
                     cobrosPaises.put(paises.HN, cobros);
                     break;
                 case "NI":
+                    analisisCobros = new ServiciosNI();
+                    cobros = analisisCobros.procesarCobros(archivo);
+                    cobrosPaises.put(paises.NI, cobros);
                     break;
                 case "CR":
                     analisisCobros = new ServiciosCR();
