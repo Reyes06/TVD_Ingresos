@@ -219,8 +219,6 @@ public class Ventana extends javax.swing.JFrame {
             modeloGT.addRow(new Object[]{"RUTA 14", temp.getConteo(), temp.getSuma()});
             temp = guatemala.get(GT.RECARGAYGANA);
             modeloGT.addRow(new Object[]{"RECARGA Y GANA", temp.getConteo(), temp.getSuma()});
-            temp = guatemala.get(GT.MIDOCTOR);
-            modeloGT.addRow(new Object[]{"MI DOCTOR", temp.getConteo(), temp.getSuma()});
             
             /*SV = jTable2*/
             DefaultTableModel modeloSV = (DefaultTableModel) jTable2.getModel();
@@ -258,13 +256,13 @@ public class Ventana extends javax.swing.JFrame {
             temp = honduras.get(HN.LAPROMO);
             modeloHN.addRow(new Object[]{"RASPICLARO", temp.getConteo(), temp.getSuma()});
             temp = honduras.get(HN.MEGAPROMO);
-            modeloHN.addRow(new Object[]{"RUTA 14", temp.getConteo(), temp.getSuma()});
+            modeloHN.addRow(new Object[]{"RUTA 3114", temp.getConteo(), temp.getSuma()});
             temp = honduras.get(HN.ELCUPONAZO);
             modeloHN.addRow(new Object[]{"EL CUPONAZO", temp.getConteo(), temp.getSuma()});
             temp = honduras.get(HN.MIDOCTOR);
-            modeloHN.addRow(new Object[]{"MIDOCTOR", temp.getConteo(), temp.getSuma()});
+            modeloHN.addRow(new Object[]{"SUMMER PARTY", temp.getConteo(), temp.getSuma()});
             temp = honduras.get(HN.PROMOVERANO);
-            modeloHN.addRow(new Object[]{"PROMO VERANO", temp.getConteo(), temp.getSuma()});
+            modeloHN.addRow(new Object[]{"RUTA 3671", temp.getConteo(), temp.getSuma()});
             
             /*HN = jTable3*/
             DefaultTableModel modeloNI = (DefaultTableModel) jTable4.getModel();

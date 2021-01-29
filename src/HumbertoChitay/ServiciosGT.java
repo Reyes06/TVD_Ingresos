@@ -23,8 +23,7 @@ public class ServiciosGT implements Servicios{
         ELCUPONAZO,
         CLAROSALUD,
         MEGAPROMO, /*RUTA 14*/
-        RECARGAYGANA,
-        MIDOCTOR
+        RECARGAYGANA
     }
     
     @Override
@@ -40,7 +39,6 @@ public class ServiciosGT implements Servicios{
         datos.put(GT.CLAROSALUD, new Acumulador());
         datos.put(GT.MEGAPROMO, new Acumulador());
         datos.put(GT.RECARGAYGANA, new Acumulador());
-        datos.put(GT.MIDOCTOR, new Acumulador());
         
         LinkedList<String[]> tabla = CsvManager.read(csvPath);
         
@@ -77,9 +75,6 @@ public class ServiciosGT implements Servicios{
                     break;
                 case "TELEVIDA S RECARGA Y GANA":
                     datos.get(GT.RECARGAYGANA).agregar(dato);
-                    break;
-                case "MI DOCTOR":
-                    datos.get(GT.MIDOCTOR).agregar(dato);
                     break;
             }
         }
