@@ -11,6 +11,7 @@ import HumbertoChitay.ServiciosHN.HN;
 import HumbertoChitay.ServiciosNI.NI;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -202,7 +203,8 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser("C:\\Users\\ADMReina\\Downloads");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Zip files", "zip", "rar"));
         int seleccion = fileChooser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             
