@@ -3,14 +3,19 @@ package HumbertoChitay;
 
 import Utils.CsvManager;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Eddy Reyes
  */
-public class ServiciosGT implements Servicios{
+public class ServiciosGT extends Servicios{
 
     
     public enum GT {
@@ -23,11 +28,15 @@ public class ServiciosGT implements Servicios{
         ELCUPONAZO,
         CLAROSALUD,
         MEGAPROMO, /*RUTA 14*/
-        RECARGAYGANA
+        RECARGAYGANA,
+        FECHA
     }
     
     @Override
     public HashMap procesarCobros(File csvPath) {
+        
+        LinkedList<String[]> tabla = CsvManager.read(csvPath);
+        
         HashMap<GT, Acumulador> datos = new HashMap();
         datos.put(GT.CLUBDORADO1, new Acumulador());
         datos.put(GT.CLUBDORADO2, new Acumulador());
@@ -40,7 +49,13 @@ public class ServiciosGT implements Servicios{
         datos.put(GT.MEGAPROMO, new Acumulador());
         datos.put(GT.RECARGAYGANA, new Acumulador());
         
-        LinkedList<String[]> tabla = CsvManager.read(csvPath);
+        if(!formatoValido(tabla.get(0))){
+            JOptionPane.showMessageDialog(null, "Formato invalido para el archivo de cobros GT");
+            return datos;
+        } else {
+            datos.put(GT.FECHA, new Acumulador(tabla.get(1)[0]));
+        }
+        
         
         for (int i = 1; i < tabla.size(); i++) {
             String[] fila = tabla.get(i);

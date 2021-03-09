@@ -4,12 +4,13 @@ import Utils.CsvManager;
 import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Eddy Reyes
  */
-public class ServiciosCR implements Servicios{
+public class ServiciosCR extends Servicios{
 
     public enum CR {
         CLUBDORADO,
@@ -31,6 +32,11 @@ public class ServiciosCR implements Servicios{
         
         
         LinkedList<String[]> tabla = CsvManager.read(csvPath);
+        
+        if(!formatoValido(tabla.get(0))){
+            JOptionPane.showMessageDialog(null, "Formato invalido para el archivo de cobros CR");
+            return datos;
+        }
         
         for (int i = 1; i < tabla.size(); i++) {
             String[] fila = tabla.get(i);

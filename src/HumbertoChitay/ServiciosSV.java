@@ -5,12 +5,13 @@ import Utils.CsvManager;
 import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Eddy Reyes
  */
-public class ServiciosSV implements Servicios{
+public class ServiciosSV extends Servicios{
 
     
     public enum SV {
@@ -33,6 +34,11 @@ public class ServiciosSV implements Servicios{
         datos.put(SV.MEGAPROMO, new Acumulador());
         
         LinkedList<String[]> tabla = CsvManager.read(csvPath);
+        
+        if(!formatoValido(tabla.get(0))){
+            JOptionPane.showMessageDialog(null, "Formato invalido para el archivo de cobros SV");
+            return datos;
+        }
         
         for (int i = 1; i < tabla.size(); i++) {
             String[] fila = tabla.get(i);

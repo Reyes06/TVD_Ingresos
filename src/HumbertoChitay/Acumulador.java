@@ -8,10 +8,19 @@ package HumbertoChitay;
 public class Acumulador {
     private Integer conteo;
     private Double suma;
+    private String fecha;
+
+    public String getFecha() {
+        return fecha;
+    }
     
     public Acumulador(){
         conteo = 0;
         suma = 0.0;
+    }
+    
+    public Acumulador(String fecha){
+        this.fecha = fecha;
     }
     
     public Integer getConteo(){

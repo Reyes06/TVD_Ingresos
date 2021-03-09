@@ -26,6 +26,7 @@ public class Ventana extends javax.swing.JFrame {
         jTable3.setCellSelectionEnabled(true);
         jTable4.setCellSelectionEnabled(true);
         jTable5.setCellSelectionEnabled(true);
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +45,8 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analisis reporte de ingresos - Televida");
@@ -161,6 +164,8 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Fecha/Hora:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +176,12 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,7 +189,11 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jButton1)
-                .addGap(26, 26, 26)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -219,6 +233,7 @@ public class Ventana extends javax.swing.JFrame {
             modeloGT.addRow(new Object[]{"RUTA 14", temp.getConteo(), temp.getSuma()});
             temp = guatemala.get(GT.RECARGAYGANA);
             modeloGT.addRow(new Object[]{"RECARGA Y GANA", temp.getConteo(), temp.getSuma()});
+            jLabel2.setText(guatemala.get(GT.FECHA).getFecha());
             
             /*SV = jTable2*/
             DefaultTableModel modeloSV = (DefaultTableModel) jTable2.getModel();
@@ -303,6 +318,8 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
