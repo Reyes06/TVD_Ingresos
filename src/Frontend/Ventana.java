@@ -1,6 +1,9 @@
 
 package Frontend;
 
+import DB.ApolloBR;
+import DB.ApolloBR.serviciosBR;
+import DB.Cobro;
 import HumbertoChitay.Acumulador;
 import HumbertoChitay.Analizador;
 import HumbertoChitay.Analizador.paises;
@@ -9,6 +12,7 @@ import HumbertoChitay.ServiciosCR.CR;
 import HumbertoChitay.ServiciosGT.GT;
 import HumbertoChitay.ServiciosHN.HN;
 import HumbertoChitay.ServiciosNI.NI;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -27,6 +31,10 @@ public class Ventana extends javax.swing.JFrame {
         jTable3.setCellSelectionEnabled(true);
         jTable4.setCellSelectionEnabled(true);
         jTable5.setCellSelectionEnabled(true);
+        jTable6.setCellSelectionEnabled(true);
+        jTable7.setCellSelectionEnabled(true);
+        jTable8.setCellSelectionEnabled(true);
+        jTable10.setCellSelectionEnabled(true);
         setLocationRelativeTo(null);
     }
 
@@ -45,6 +53,19 @@ public class Ventana extends javax.swing.JFrame {
         jTable4 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable8 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable10 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -158,6 +179,134 @@ public class Ventana extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Costa Rica", jScrollPane5);
 
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Nombre", "Amount", "Conteo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable6.setRowSelectionAllowed(false);
+        jScrollPane6.setViewportView(jTable6);
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Nombre", "Conteo", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable7.setRowSelectionAllowed(false);
+        jScrollPane7.setViewportView(jTable7);
+
+        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Nombre", "Amount", "Conteo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable8.setRowSelectionAllowed(false);
+        jScrollPane8.setViewportView(jTable8);
+
+        jLabel3.setText("Panama:");
+
+        jLabel4.setText("Peru:");
+
+        jLabel5.setText("Africa:");
+
+        jLabel6.setText("Bolivia:");
+
+        jTable10.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Nombre", "Conteo", "Ingresos"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable10.setRowSelectionAllowed(false);
+        jScrollPane9.setViewportView(jTable10);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("ApolloBR", jPanel1);
+
         jButton1.setText("Procesar cobros Humberto Chitay");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,16 +323,18 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(502, 502, 502))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,12 +342,12 @@ public class Ventana extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jButton1)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,6 +464,31 @@ public class Ventana extends javax.swing.JFrame {
             temp = costaRica.get(CR.GUIASALUD);
             modeloCR.addRow(new Object[]{"CLARO SALUD", temp.getConteo(), temp.getSuma()});
             
+            /*ApolloBR = jTable6*/
+            DefaultTableModel modeloBR = (DefaultTableModel) jTable6.getModel();
+            modeloBR.addRow(new Object[]{"-----", "Club dorado - Claro PA", "-----", "-----"});
+            modeloBR.addRow(new Object[]{"-----", "Guia salud  - Claro PA", "-----", "-----"});
+            modeloBR.addRow(new Object[]{"-----", "Miximania   - Claro PA", "-----", "-----"});
+            
+            /*ApolloBR = jTable7*/
+            ApolloBR br = new ApolloBR();
+            modeloBR = (DefaultTableModel) jTable7.getModel();
+            HashMap<serviciosBR, Cobro> tabla2 = br.obtenerCobrosPeru();
+            Cobro tempC = tabla2.get(serviciosBR.ClaroPE);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor y salud  - Claro Peru", tempC.getCantidad(), tempC.getAmount()});
+            
+            /*ApolloBR = jTable8 y jTable10*/
+            HashMap<serviciosBR, Cobro> tabla = br.obtenerCobrosAfrica();
+            tempC = tabla.get(serviciosBR.GoFitness);
+            DecimalFormat df = new DecimalFormat("#");
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "GoFitness - Entel Peru", tempC.getCantidad(), df.format(tempC.getAmount())});
+            modeloBR = (DefaultTableModel) jTable8.getModel();
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor & Salud - VivaBo", "-----", "-----"});
+            tempC = tabla.get(serviciosBR.Telkom);
+            modeloBR = (DefaultTableModel) jTable10.getModel();
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Telkom Kenya", tempC.getCantidad(), tempC.getAmount()});
+            tempC = tabla.get(serviciosBR.Safaricom);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Safaricom Kenya", tempC.getCantidad(), tempC.getAmount()});
             
         }
 
@@ -322,16 +498,29 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTable jTable8;
     // End of variables declaration//GEN-END:variables
 }
