@@ -3,6 +3,7 @@ package Frontend;
 
 import DB.ApolloBR;
 import DB.ApolloBR.serviciosBR;
+import DB.ApolloGT;
 import DB.Cobro;
 import HumbertoChitay.Acumulador;
 import HumbertoChitay.Analizador;
@@ -240,7 +241,7 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel4.setText("Peru:");
 
-        jLabel5.setText("Africa:");
+        jLabel5.setText("Kenya:");
 
         jLabel6.setText("Bolivia:");
 
@@ -271,14 +272,14 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7)
                     .addComponent(jScrollPane6)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -286,19 +287,19 @@ public class Ventana extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,6 +363,8 @@ public class Ventana extends javax.swing.JFrame {
             HashMap<Analizador.paises, HashMap> cobrosPaises = Analizador.procesarCobros(fileChooser.getSelectedFile());
             
             Acumulador temp;
+            ApolloGT conexionGT = new ApolloGT();
+            HashMap<ApolloGT.servicios, Cobro> cobrosGT = conexionGT.obtenerCobrosPanama();
             
             /*GT = jTable1*/
             DefaultTableModel modeloGT = (DefaultTableModel) jTable1.getModel();
@@ -372,6 +375,8 @@ public class Ventana extends javax.swing.JFrame {
             modeloGT.addRow(new Object[]{"CLUB DORADO 2", temp.getConteo(), temp.getSuma()});
             temp = guatemala.get(GT.CLUBDORADO3);
             modeloGT.addRow(new Object[]{"CLUB DORADO 3", temp.getConteo(), temp.getSuma()});
+            Cobro tempC = cobrosGT.get(ApolloGT.servicios.ClubDoradoGT);
+            modeloGT.addRow(new Object[]{"CLUB DORADO PREMIUM 2", tempC.getCantidad(), tempC.getAmount()});
             temp = guatemala.get(GT.YOMILLONARIO);
             modeloGT.addRow(new Object[]{"YO MILLONARIO", temp.getConteo(), temp.getSuma()});
             temp = guatemala.get(GT.GANAMANIA);
@@ -387,6 +392,8 @@ public class Ventana extends javax.swing.JFrame {
             temp = guatemala.get(GT.RECARGAYGANA);
             modeloGT.addRow(new Object[]{"RECARGA Y GANA", temp.getConteo(), temp.getSuma()});
             jLabel2.setText(guatemala.get(GT.FECHA).getFecha());
+            tempC = cobrosGT.get(ApolloGT.servicios.MiDoctor);
+            modeloGT.addRow(new Object[]{"MI DOCTOR", tempC.getCantidad(), tempC.getAmount()});
             
             /*SV = jTable2*/
             DefaultTableModel modeloSV = (DefaultTableModel) jTable2.getModel();
@@ -466,29 +473,34 @@ public class Ventana extends javax.swing.JFrame {
             
             /*ApolloBR = jTable6*/
             DefaultTableModel modeloBR = (DefaultTableModel) jTable6.getModel();
-            modeloBR.addRow(new Object[]{"-----", "Club dorado - Claro PA", "-----", "-----"});
-            modeloBR.addRow(new Object[]{"-----", "Guia salud  - Claro PA", "-----", "-----"});
-            modeloBR.addRow(new Object[]{"-----", "Miximania   - Claro PA", "-----", "-----"});
+            tempC = cobrosGT.get(ApolloGT.servicios.ClubDoradoPA);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Club dorado - Claro", tempC.getCantidad(), tempC.getAmount()});
+            tempC = cobrosGT.get(ApolloGT.servicios.GuiaSalud);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Guia salud - Claro", tempC.getCantidad(), tempC.getAmount()});
+            tempC = cobrosGT.get(ApolloGT.servicios.Miximania);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Miximania - Claro", tempC.getCantidad(), tempC.getAmount()});
             
             /*ApolloBR = jTable7*/
             ApolloBR br = new ApolloBR();
             modeloBR = (DefaultTableModel) jTable7.getModel();
             HashMap<serviciosBR, Cobro> tabla2 = br.obtenerCobrosPeru();
-            Cobro tempC = tabla2.get(serviciosBR.ClaroPE);
-            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor y salud  - Claro Peru", tempC.getCantidad(), tempC.getAmount()});
+            tempC = tabla2.get(serviciosBR.GuiaSalud);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor y salud - Claro", tempC.getCantidad(), tempC.getAmount()});
+            tempC = tabla2.get(serviciosBR.GuiaSaludSemanal);
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor y salud Semanal - Claro", tempC.getCantidad(), tempC.getAmount()});
             
             /*ApolloBR = jTable8 y jTable10*/
             HashMap<serviciosBR, Cobro> tabla = br.obtenerCobrosAfrica();
             tempC = tabla.get(serviciosBR.GoFitness);
             DecimalFormat df = new DecimalFormat("#");
-            modeloBR.addRow(new Object[]{tempC.getFecha(), "GoFitness - Entel Peru", tempC.getCantidad(), df.format(tempC.getAmount())});
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "GoFitness - Entel", tempC.getCantidad(), df.format(tempC.getAmount())});
             modeloBR = (DefaultTableModel) jTable8.getModel();
-            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor & Salud - VivaBo", "-----", "-----"});
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Doctor & Salud - Viva", "-----", "-----"});
             tempC = tabla.get(serviciosBR.Telkom);
             modeloBR = (DefaultTableModel) jTable10.getModel();
-            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Telkom Kenya", tempC.getCantidad(), tempC.getAmount()});
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Telkom", tempC.getCantidad(), tempC.getAmount()});
             tempC = tabla.get(serviciosBR.Safaricom);
-            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Safaricom Kenya", tempC.getCantidad(), tempC.getAmount()});
+            modeloBR.addRow(new Object[]{tempC.getFecha(), "Mobiafya - Safaricom", tempC.getCantidad(), tempC.getAmount()});
             
         }
 

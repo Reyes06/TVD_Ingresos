@@ -2,6 +2,10 @@
 package DB;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +20,8 @@ public class ApolloBR {
         GoFitness,
         Safaricom,
         Telkom,
-        ClaroPE
+        GuiaSalud,
+        GuiaSaludSemanal
     }
     
     public HashMap obtenerCobrosAfrica(){
@@ -28,6 +33,13 @@ public class ApolloBR {
                         "GROUP BY 1,2,3;";
         
         HashMap<serviciosBR, Cobro> tabla = new HashMap();
+        Date f = new Date();
+        f.setDate(f.getDate()-1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(f);
+        tabla.put(serviciosBR.GoFitness, new Cobro(fecha, 0.0, 0));
+        tabla.put(serviciosBR.Safaricom, new Cobro(fecha, 0.0, 0));
+        tabla.put(serviciosBR.Telkom, new Cobro(fecha, 0.0, 0));
         try {
             PreparedStatement  sentencia = conexion.prepareStatement(query);
             ResultSet rs = sentencia.executeQuery();
@@ -81,21 +93,30 @@ public class ApolloBR {
                         "        INNER JOIN\n" +
                         "    codigos_suscripcion.suscripciones susc USING (codigo_suscripcion)\n" +
                         "WHERE\n" +
-                        "    DATE(b.fecha_envio) = CURDATE() - 1\n" +
+                        "    DATE(b.fecha_envio) = CURDATE()-1\n" +
                         "        AND b.cobro_exitoso = 'YES'\n" +
                         "GROUP BY DATE(b.fecha_envio) , b.cobro_exitoso , b.id_suscripcion;";
         
         HashMap<serviciosBR, Cobro> tabla = new HashMap();
+        Date f = new Date();
+        f.setDate(f.getDate()-1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(f);
+        tabla.put(serviciosBR.GuiaSalud, new Cobro(fecha, 0.0, 0));
+        tabla.put(serviciosBR.GuiaSaludSemanal, new Cobro(fecha, 0.0, 0));
         try {
             PreparedStatement sentencia = conexion.prepareStatement(query);
             ResultSet rs = sentencia.executeQuery();
             
             while(rs.next()){
-                if(rs.getString(2).equals("Claro PE CERT - Guia Salud")){
-                    if(rs.getString(3).equals("YES")){
-                        tabla.put(serviciosBR.ClaroPE, new Cobro(rs.getString(1), rs.getDouble(6), rs.getInt(5)));
-                    }
-                }
+                switch(rs.getString(2)){
+                    case "Claro PE CERT - Guia Salud":
+                        tabla.put(serviciosBR.GuiaSalud, new Cobro(rs.getString(1), rs.getDouble(6), rs.getInt(5)));
+                        break;
+                    case "Claro PE CERT - Guia Salud Semanal":
+                        tabla.put(serviciosBR.GuiaSaludSemanal, new Cobro(rs.getString(1), rs.getDouble(6), rs.getInt(5)));
+                        break;
+                }                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ApolloBR.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,7 +140,7 @@ public class ApolloBR {
         System.out.println(tabla.get(serviciosBR.Telkom).toString());
         
         HashMap<serviciosBR, Cobro> tabla2 = abr.obtenerCobrosPeru();
-        Cobro c = tabla2.get(serviciosBR.ClaroPE);
+        Cobro c = tabla2.get(serviciosBR.GuiaSalud);
         System.out.println(c.toString());
         
     }
